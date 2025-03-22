@@ -26,15 +26,14 @@ The project is inspired by Adrian Rosebrock's tutorial on drowsiness detection f
 3. **Eye Landmark Extraction**: Extracts coordinates for the eyes.
 4. **Eye Aspect Ratio Calculation**:
    - EAR is computed using the formula:
-     \[
-     EAR = \frac{\text{Distance between vertical eye landmarks}}{\text{Distance between horizontal eye landmarks}}
-     \]
+     ![EAR FORMULA](assets/blink_detection_equation.png)
    - EAR decreases significantly when eyes are closed.
 5. **Thresholding**:
    - If EAR is below a threshold (e.g., 0.26) for a certain number of frames, it indicates drowsiness.
 6. **Alert Mechanism**:
    - Plays an alarm sound using the `playsound` library in a separate thread to avoid blocking the main script.
-
+7. 68 coordinates are detected for the given face by the face detector as shown below:
+![FACIAL LANDMARKS MARKUP](assets/facial_landmarks_68markup-768x619.jpg)
 ---
 
 ## Requirements
@@ -49,5 +48,13 @@ Below are the dependencies used in this project:
 | imutils    | 0.5.2    |
 | dlib       | 19.17.0  |
 
-Install these dependencies using pip:
+ ## **Commands to run the detection:**
+ ```
+ python detect_drowsiness.py \
+	--shape-predictor shape_predictor_68_face_landmarks.dat \
+	--alarm alarm.wav
+```
+
+## **Results:**
+![Example output](assets/output.gif)
 
